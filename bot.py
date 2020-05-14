@@ -1,18 +1,17 @@
 import telegram
 from telegram.ext import Updater, CommandHandler
-
 from botCommands import startupCommands, shutdownCommands, sendText
-
 import requests
+import random
 
-##########################################################
+
 #get botID
 botToken = '1108396137:AAGzh9VfPibPY0ZBIKWMvIC0zkdPiV9ZKp0'
 
 #open file
 helpFile = open("files/help.text", "r")
-##########################################################
 
+#METHODS
 def chatMenu(chatName, chatID, keyboard, botToken):
 	print()
 	keyboard = "foobar"
@@ -47,7 +46,9 @@ def menu():
 			shutdown()
 
 def shutdown():
+	print("SHUTTING DOWN BOT")
 	shutdownCommands()
+
 	helpFile.close()
 	exit();
 
