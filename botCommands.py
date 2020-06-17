@@ -12,6 +12,7 @@ botToken = '1108396137:AAGzh9VfPibPY0ZBIKWMvIC0zkdPiV9ZKp0'
 beeMovie = open("files/Bee-Movie-Script.text", "r")
 commandsList = open("files/commandsList.text", "r")
 quotesFile = open("files/quotes.text", "r")
+pacerTest = open("files/pacer.text", "r")
 
 #setup the live queue
 updater = Updater(token=botToken, use_context=True)
@@ -32,6 +33,7 @@ def startupCommands():
 	dispatcher.add_handler(CommandHandler('bee', bee))
 	dispatcher.add_handler(CommandHandler('help', help))
 	dispatcher.add_handler(CommandHandler('quote', quote))
+	dispatcher.add_handler(CommandHandler('pacer', pacer))
 
 def shutdownCommands():
 	print("	closing updater")
@@ -41,6 +43,7 @@ def shutdownCommands():
 	beeMovie.close()
 	commandsList.close()
 	quotesFile.close()
+	pacerResr.close()
 
 #COMMANDS
 def bee(update, context):
@@ -58,3 +61,7 @@ def quote(update, context):
 	randNum = random.randrange(0, len(quotes))
 	context.bot.send_message(chat_id=update.effective_chat.id, text = quotes[randNum])
 	quotesFile.seek(0)
+
+def pacer(update, context):
+	context.bot.send_message(chat_id=update.effective_chat.id, text = pacerTest.read())
+	pacerTest.seek(0)
